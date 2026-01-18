@@ -9,15 +9,14 @@ def user(self) -> dict[str]:
     response = requests.get(self.uri)
     return response.json()
 
-asset.multi(
-    schedule = user,
-    outlets = [
+@asset.multi(
+    schedule=user,
+    outlets=[
         Asset(name="user_location"),
         Asset(name="user_login"),
-
     ]
 )
-def user_info(user:Asset, context: Context) -> dict[str]:
+def user_info(user:Asset, context: Context) -> list[dict[str]]:
     user_data = context['ti'].xcom_pull(
         dag_id=user.name,
         task_ids=user.name,
