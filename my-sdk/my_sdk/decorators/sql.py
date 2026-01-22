@@ -71,3 +71,5 @@ def sql_task(
         decorated_operator_class=_SQLDecoratedOperator,
         **kwargs,
     )
+
+
